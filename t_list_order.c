@@ -2,21 +2,18 @@
 
 
 // Creates new node and returns the pointer of it
-t_stack_node *ft_lstnew(long content)
+t_stack_node *ft_lstnew(int value)
 {
-    t_stack_node *new_node;
+	t_stack_node	*new;
 
-    new_node = (t_stack_node *)malloc(sizeof(t_stack_node));  // Reserva memoria para el nuevo nodo
-    if (!new_node)
-        return (NULL);  // Si la memoria no se pudo asignar, devolver NULL
-
-    new_node->content = content;  // Asignar el contenido
-    new_node->index = -1;         // Inicializar el índice en -1 o el valor que necesites
-    new_node->next = NULL;        // El siguiente nodo es NULL por ahora
-
-    return (new_node);  // Retornar el nodo recién creado
+	new = (t_stack_node *) malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->index = -1;
+	new->next = NULL;
+	return (new);
 }
-
 
 // Adds the specified node to a stack (list) making it the head
 void	ft_lstadd_front(t_stack_node **stack, t_stack_node *new)
