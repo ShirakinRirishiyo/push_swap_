@@ -3,12 +3,13 @@
 
 static void swap(t_stack_node *stack)
 {
-	int temp;
+	int		temp;
+	
 	if(stack && stack->next)
 	{
-		temp = stack->data;
-		stack->data = stack->next->data;
-		stack->next->data = temp;
+		temp = stack->content;
+		stack->content = stack->next->content;
+		stack->next->content = temp;
 	}
 }
 

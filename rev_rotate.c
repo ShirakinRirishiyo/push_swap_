@@ -1,20 +1,24 @@
+
 #include "push_swap.h"
 
 static void rev_rotate(t_stack_node **stack)
 {
-	t_stack_node *first;
-	t_stack_node *temp;
+    t_stack_node *last;
+    t_stack_node *temp;
 
-	if(*stack && (*stack)->next)
-	{
-		first = *stack;
-		temp = *stack;
-		while(temp->next->next)
-			temp = temp->next;
-		temp->next = NULL;
-		ft_lstadd_front(stack, first);
-	}
+    if (*stack && (*stack)->next)
+    {
+        temp = *stack;
+        while (temp->next->next) // Encuentra el penúltimo nodo
+            temp = temp->next;
+        
+        last = temp->next;      // Apunta al último nodo
+        temp->next = NULL;      // Desconecta el último nodo
+        last->next = *stack;    // Conecta el último nodo al inicio de la pila
+        *stack = last;          // Actualiza el puntero de la pila
+    }
 }
+
 
 int rev_rotate_a(t_stack_node **s_a)
 {

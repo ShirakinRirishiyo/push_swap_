@@ -1,58 +1,88 @@
 #include "push_swap.h"
 
-static int ft_duplicated(int num, char **av, int i)
+// Función para verificar si un número ya está en el conjunto de elementos
+static int ft_duplicated(long num, t_stack_node *set)
 {
-	i++;
-	while(av[i])
-	{
-		if (ft_atoi(av[i]) == num)
-			return (1);
-		i++;
-	}
-	return (0);
+    t_stack_node *temp = set;
+    while (temp)
+    {
+        if ((long)temp->content == num)
+            return (1);  // Encontrado duplicado
+        temp = temp->next;
+    }
+    return (0);  // No hay duplicado
 }
 
-static int ft_insum(char *num)
+// Función para verificar si un número es válido
+static int ft_is_valid_number(char *num)
 {
-	int i;
+    int i = 0;
 
-	i = 0;
-	if(num[0] == '-')
-		i++;
-	while(num[i])
-	{
-		if (!ft_isdigit(num[i]))
-			return (0);
-		i++;
-	}
-	return (1);
+    if (num[0] == '-')  // Si el número empieza con signo negativo
+        i++;
+    while (num[i])
+    {
+        if (!ft_isdigit(num[i]))
+            return (0);  // Si contiene caracteres no numéricos
+        i++;
+    }
+    return (1);
 }
 
+// Función para liberar la lista (sin usar 'del')
+static void ft_lstclear(t_stack_node **lst)
+{
+    t_stack_node *temp;
+    
+    // Recorrer la lista y liberar cada nodo
+    while (*lst)
+    {
+        temp = (*lst)->next;  // Guardar el siguiente nodo
+        free(*lst);           // Liberar el nodo (no el contenido)
+        *lst = temp;          // Avanzar al siguiente nodo
+    }
+    *lst = NULL;  // Asegurar que el puntero a la lista esté en NULL al final
+}
+
+// Función principal para verificar todos los argumentos
 void check_all(int ac, char **av)
 {
-	int i;
-	long tmp;
-	char **args;
+    int i;
+    long tmp;
+    char **args;
+    t_stack_node *set = NULL;  // Conjunto para verificar duplicados
 
-	i = 0;
-	if(ac == 2)
-		args = ft_split(av[1], ' ');
-	else
-	{
-		i = 1;
-		args = av;
-	}
-	while (args[i])
-	{
-		tmp = ft_atoi(args[i]);
-		if(!ft_insum(args[i]))
-			error_handle("Error");
-		if(tmp > 2147483647 || tmp < -2147483648)
-			error_handle("Error");
-		if(ft_duplicated(tmp, args, i))
-			error_handle("Error");
-		
-	}
-	if(ac == 2)
-		ft_free(args);	
+    i = 0;
+    if (ac == 2)
+        args = ft_split(av[1], ' ');  // Dividir si se pasa un solo argumento
+    else
+    {
+        i = 1;
+        args = av;
+    }
+
+    while (args[i])
+    {
+        if (!ft_is_valid_number(args[i]))  // Comprobamos si es un número válido
+            error_handle("Error");
+
+        tmp = ft_atoi(args[i]);
+
+        if (ft_duplicated(tmp, set))  // Comprobamos si ya está en el conjunto
+            error_handle("Error");
+
+        if (tmp < -2147483648 || tmp > 2147483647)  // Verificamos si el número está en el rango válido
+            error_handle("Error");
+
+        // Añadimos el número al conjunto
+        ft_lstadd_back(&set, ft_lstnew(tmp));  // Pasamos el valor directamente como un 'int'
+
+        i++;
+    }
+
+    if (ac == 2)
+        ft_free(args);  // Liberar la memoria si es necesario
+
+    // Liberar el conjunto sin el parámetro 'del'
+    ft_lstclear(&set);
 }

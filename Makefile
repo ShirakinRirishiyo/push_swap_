@@ -8,16 +8,16 @@ LIBFTDIR = ./libft
 LIBFt = $(LIBFTDIR)/libft.a
 
 SRCS =  main.c \
-		utils.c \
 		utils_2.c \
-		push_stack.c \
+		q_sort.c \
 		check_all.c \
-		quit_sort.c \
 		rev_rotate.c \
 		rotate.c \
-		sort_function.c \
+		sort_simple.c \
 		swap.c \
+		push_stack.c \
 		t_list_order.c \
+		index_stack.c \
 
 all: $(NAME) $(LIBFt) $(OBJDIR)
 

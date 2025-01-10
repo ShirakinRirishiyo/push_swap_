@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 typedef struct s_struct {
-    int data;
+    int content;
     struct s_struct *next;
 } t_struct;
 
-t_struct *sort_list(t_struct **begin_list)
+t_struct *sort_stack_node(t_struct **begin_list)
 {
     int swap;
     t_struct *current;
@@ -24,7 +24,7 @@ t_struct *sort_list(t_struct **begin_list)
         while (current->next) {
             next = current->next;
 
-            if (current->data > next->data) {
+            if (current->content > next->content) {
                 swap = 1;
 
                 // Swap the nodes
@@ -59,18 +59,18 @@ int main()
     // Crear la lista enlazada a partir del arreglo
     for (i = 0; i < 10; i++) {
         tmp = malloc(sizeof(t_struct));
-        tmp->data = stack_a[i];
+        tmp->content = stack_a[i];
         tmp->next = begin_list;
         begin_list = tmp;
     }
 
     // Ordenar la lista
-    sort_list(&begin_list);
+    sort_stack_node(&begin_list);
 
     // Imprimir la lista ordenada
     tmp = begin_list;
     while (tmp) {
-        printf("%d\n", tmp->data);
+        printf("%d\n", tmp->content);
         tmp = tmp->next;
     }
 

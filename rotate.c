@@ -2,20 +2,26 @@
 
 static void rotate(t_stack_node **stack)
 {
-	t_stack_node *first;
-	t_stack_node *temp;
+    t_stack_node *first;
+    t_stack_node *last;
 
-	if(*stack && (*stack)->next)
-	{
-		first = *stack;
-		*stack = (*stack)->next;
-		temp = *stack;
-		while(temp->next)
-			temp = temp->next;
-		temp->next = first;
-		first->next = NULL;
-		free(temp);
-	}
+    // Verifica que la lista tenga al menos dos nodos
+    if (!(*stack) || !(*stack)->next)
+        return;
+
+    first = *stack;          // Guarda el nodo inicial
+    *stack = (*stack)->next; // Mueve el inicio al segundo nodo
+    (*stack)->prev = NULL;   // Elimina la referencia al nodo anterior
+
+    // Encuentra el último nodo
+    last = *stack;
+    while (last->next)
+        last = last->next;
+
+    // Conecta el primer nodo al final
+    last->next = first;
+    first->prev = last;      // Actualiza el puntero prev del primer nodo
+    first->next = NULL;      // Elimina la referencia al siguiente nodo
 }
 
 int rotate_a(t_stack_node **s_a)
