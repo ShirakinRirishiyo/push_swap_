@@ -30,6 +30,9 @@ int main(int ac, char **av)
         return (1); // Error al inicializar las pilas
     reading_input_to_stack(a, ac, av); // Cargar la entrada en las pilas
     assign_indices(a);
+      printf("Contenido de la pila 'a' después del parseo:\n");
+    print_stack_node(*a);
+
     if (is_sorted(a))
         return (0); 
     int size = ft_lstsize(*a);
