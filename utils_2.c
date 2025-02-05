@@ -11,16 +11,17 @@ void	ft_free(char **str)
 	while (i >= 0)
 		free(str[i--]);
 }
-int error_handle(char *str)
+
+int	error_handle(char *str)
 {
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
 	exit(1);
 }
 
-int compare(const void *a, const void *b)
+int	compare(const void *a, const void *b)
 {
-    return (*(int *)a - *(int *)b);
+	return (*(int *)a - *(int *)b);
 }
 
 void	print_stack_node(t_stack_node *head)
@@ -35,7 +36,9 @@ void	print_stack_node(t_stack_node *head)
 		tmp = tmp->next;
 	}
 }
-t_stack_node *find_smallest(t_stack_node **stack) //la dejaremos por si acaso
+
+
+t_stack_node 	*find_smallest(t_stack_node **stack) //la dejaremos por si acaso
 {
 	long smallest;
 	t_stack_node *smallest_node;

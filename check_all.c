@@ -1,88 +1,74 @@
 #include "push_swap.h"
 
-// Función para verificar si un número ya está en el conjunto de elementos
-static int ft_duplicated(long num, t_stack_node *set)
+int	check_duplicate(char **argv)
 {
-    t_stack_node *temp = set;
-    while (temp)
-    {
-        if ((long)temp->content == num)
-            return (1);  // Encontrado duplicado
-        temp = temp->next;
-    }
-    return (0);  // No hay duplicado
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	len = count_arg(argv);
+	while (i < len)
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+int	count_arg(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
 }
 
-// Función para verificar si un número es válido
-static int ft_is_valid_number(char *num)
+int	check_number(char *argv)
 {
-    int i = 0;
+	int	i;
 
-    if (num[0] == '-')  // Si el número empieza con signo negativo
-        i++;
-    while (num[i])
-    {
-        if (!ft_isdigit(num[i]))
-            return (0);  // Si contiene caracteres no numéricos
-        i++;
-    }
-    return (1);
+	i = 0;
+	if (argv[i] == '-')
+		i++;
+	while (argv[i])
+	{
+		if (!ft_isdigit(argv[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-// Función para liberar la lista (sin usar 'del')
-static void ft_lstclear(t_stack_node **lst)
+void	check_all(int argc, char **argv)
 {
-    t_stack_node *temp;
-    
-    // Recorrer la lista y liberar cada nodo
-    while (*lst)
-    {
-        temp = (*lst)->next;  // Guardar el siguiente nodo
-        free(*lst);           // Liberar el nodo (no el contenido)
-        *lst = temp;          // Avanzar al siguiente nodo
-    }
-    *lst = NULL;  // Asegurar que el puntero a la lista esté en NULL al final
-}
+	int		i;
+	long	tmp_argv;
+	char	**tmp_array;
 
-// Función principal para verificar todos los argumentos
-void check_all(int ac, char **av)
-{
-    int i;
-    long tmp;
-    char **args;
-    t_stack_node *set = NULL;  // Conjunto para verificar duplicados
-
-    i = 0;
-    if (ac == 2)
-        args = ft_split(av[1], ' ');  // Dividir si se pasa un solo argumento
-    else
-    {
-        i = 1;
-        args = av;
-    }
-
-    while (args[i])
-    {
-        if (!ft_is_valid_number(args[i]))  // Comprobamos si es un número válido
-            error_handle("Error");
-
-        tmp = ft_atoi(args[i]);
-
-        if (ft_duplicated(tmp, set))  // Comprobamos si ya está en el conjunto
-            error_handle("Error");
-
-        if (tmp < -2147483648 || tmp > 2147483647)  // Verificamos si el número está en el rango válido
-            error_handle("Error");
-
-        // Añadimos el número al conjunto
-        ft_lstadd_back(&set, ft_lstnew(tmp));  // Pasamos el valor directamente como un 'int'
-
-        i++;
-    }
-
-    if (ac == 2)
-        ft_free(args);  // Liberar la memoria si es necesario
-
-    // Liberar el conjunto sin el parámetro 'del'
-    ft_lstclear(&set);
+	i = 0;
+	if (argc == 2)
+		tmp_array = ft_split(argv[1], ' ');
+	else
+		tmp_array = argv + 1;
+	while (tmp_array[i])
+	{
+		tmp_argv = ft_atoi(tmp_array[i]);
+		if (tmp_argv < -2147483648 || tmp_argv > 2147483647)
+			error_handle("Error");
+		if (check_duplicate(tmp_array))
+			error_handle("Error");
+		if (!check_number(tmp_array[i]))
+			error_handle("Error");
+		i++;
+	}
+	if (argc == 2)
+		ft_free (tmp_array);
 }

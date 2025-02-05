@@ -2,7 +2,7 @@
 
 
 // Creates new node and returns the pointer of it
-t_stack_node *ft_lstnew(int value)
+t_stack_node	*ft_lstnew(int value)
 {
 	t_stack_node	*new;
 
@@ -23,19 +23,17 @@ void	ft_lstadd_front(t_stack_node **stack, t_stack_node *new)
 }
 
 // Returns the last node of a list 
-t_stack_node *ft_lstlast(t_stack_node *head)
+t_stack_node	*ft_lstlast(t_stack_node *head)
 {
-    t_stack_node *tmp;
+	t_stack_node *tmp;
 
-    tmp = head;
-    // Avanzamos hasta llegar al último nodo, cuyo 'next' es NULL
-    while (tmp && tmp->next)
-    {
-        tmp = tmp->next;
-    }
-    return (tmp);  // Devolvemos el último nodo
+	tmp = head;
+	while (tmp && tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	return (tmp);
 }
-
 
 // Adds the specified node to a stack (list) making it the last node
 void	ft_lstadd_back(t_stack_node **stack, t_stack_node *new)
