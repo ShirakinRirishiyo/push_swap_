@@ -1,11 +1,22 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 10:27:16 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 10:27:18 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 int	numbercmp(int nbr, int *number, int size)
 {
-	int i;
+	int	i;
 
-	if(!number || size < 1)
+	if (!number || size < 1)
 		return (0);
 	i = 0;
 	while (i < size)
@@ -17,6 +28,22 @@ int	numbercmp(int nbr, int *number, int size)
 	return (0);
 }
 
+int	initialize_stacks(t_stack_node ***a, t_stack_node ***b)
+{
+	*a = malloc(sizeof(t_stack_node *));
+	if (!a)
+		return (0);
+	*b = malloc(sizeof(t_stack_node *));
+	if (!b)
+	{
+		free(a);
+		return (0);
+	}
+	**a = NULL;
+	**b = NULL;
+	return (1);
+}
+
 int	find_max_pb(int size)
 {
 	if (size == 1)
@@ -26,7 +53,7 @@ int	find_max_pb(int size)
 	else
 		return ((size / 2) + 1);
 }
-
+/*
 int	find_median(t_stack_node *stack, int size)
 {
 	int	*values;
@@ -49,7 +76,7 @@ int	find_median(t_stack_node *stack, int size)
 	median = values[size / 2];
 	free(values);
 	return (median);
-}
+}*/
 
 int	free_stack(t_stack_node **stack)
 {
@@ -65,16 +92,3 @@ int	free_stack(t_stack_node **stack)
 	}
 	return (1);
 }
-
-
-int	is_sorted(t_stack_node *stack)
-{
-	while (stack && stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-

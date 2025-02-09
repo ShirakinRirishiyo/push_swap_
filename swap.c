@@ -1,11 +1,22 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 15:38:40 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 15:38:42 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 static void	swap(t_stack_node *stack)
 {
 	int	temp;
-	
-	if(stack && stack->next)
+
+	if (stack && stack->next)
 	{
 		temp = stack->content;
 		stack->content = stack->next->content;

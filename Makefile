@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/09 14:56:43 by dediaz-f          #+#    #+#              #
+#    Updated: 2025/02/09 14:56:45 by dediaz-f         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 CFLAGS = -Wall -Werror -Wextra -g3
@@ -9,6 +21,7 @@ LIBFt = $(LIBFTDIR)/libft.a
 
 SRCS =  main.c \
 		utils_2.c \
+		utils.c \
 		q_sort.c \
 		check_all.c \
 		rev_rotate.c \

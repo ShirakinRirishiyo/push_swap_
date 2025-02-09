@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_all.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 11:37:32 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/06 12:34:30 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	check_duplicate(char **argv)
@@ -21,6 +33,7 @@ int	check_duplicate(char **argv)
 	}
 	return (0);
 }
+
 int	count_arg(char **array)
 {
 	int	i;
@@ -63,12 +76,12 @@ void	check_all(int argc, char **argv)
 		tmp_argv = ft_atoi(tmp_array[i]);
 		if (tmp_argv < -2147483648 || tmp_argv > 2147483647)
 			error_handle("Error");
-		if (check_duplicate(tmp_array))
-			error_handle("Error");
 		if (!check_number(tmp_array[i]))
 			error_handle("Error");
 		i++;
 	}
-	if (argc == 2)
-		ft_free (tmp_array);
+	if (check_duplicate(tmp_array))
+		error_handle("Error");
+	if (argc == 2 && tmp_array)
+		ft_free(tmp_array);
 }

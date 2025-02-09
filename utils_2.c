@@ -1,5 +1,16 @@
- #include "push_swap.h"
- 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 15:44:18 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 15:44:30 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 void	ft_free(char **str)
 {
@@ -37,18 +48,17 @@ void	print_stack_node(t_stack_node *head)
 	}
 }
 
-
-t_stack_node 	*find_smallest(t_stack_node **stack) //la dejaremos por si acaso
+t_stack_node	*find_smallest(t_stack_node **stack) //esta aquí por si acaso
 {
-	long smallest;
-	t_stack_node *smallest_node;
+	long			smallest;
+	t_stack_node	*smallest_node;
 
-	if(NULL == stack)
+	if (NULL == stack)
 		return (NULL);
 	smallest = LONG_MAX;
-	while(stack)
+	while (stack)
 	{
-		if((*stack)->value < smallest)
+		if ((*stack)->value < smallest)
 		{
 			smallest = (*stack)->value;
 			smallest_node = *stack;

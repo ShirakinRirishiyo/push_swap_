@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index_stack.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 13:41:40 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 10:20:46 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	reading_input_to_stack(t_stack_node **a, int ac, char **av)
 {
-	int	i;
-	t_stack_node	*new;
+	int					i;
+	t_stack_node		*new;
 
 	i = 1;
-	while(i < ac)
+	while (i < ac)
 	{
 		new = ft_lstnew(ft_atoi(av[i]));
 		ft_lstadd_back(a, new);
@@ -15,44 +26,32 @@ void	reading_input_to_stack(t_stack_node **a, int ac, char **av)
 	}
 }
 
-int	initialize_stacks(t_stack_node ***a, t_stack_node ***b)
+static void	insertion_sort(int *values, int size)
 {
-	*a = malloc(sizeof(t_stack_node *));
-	if (!a)
-		return (0);
-	*b = malloc(sizeof(t_stack_node *));
-	if (!b)
+	int	i;
+	int	j;
+	int	key;
+
+	i = 1;
+	while (i < size)
 	{
-		free(a);
-		return (0);
+		key = values[i];
+		j = i - 1;
+		while (j >= 0 && values[j] > key)
+		{
+			values[j + 1] = values[j];
+			j--;
+		}
+		values[j + 1] = key;
+		i++;
 	}
-	**a = NULL;
-	**b = NULL;
-	return (1);
-}
-static void insertion_sort(int *values, int size)
-{
-    int i, j, key;
-    i = 1;
-    while (i < size)
-    {
-        key = values[i];
-        j = i - 1;
-        while (j >= 0 && values[j] > key)
-        {
-            values[j + 1] = values[j]; // Corregido: Mover el valor mayor
-            j--;
-        }
-        values[j + 1] = key;
-        i++;
-    }
 }
 
 int	*get_sorted_values(t_stack_node *stack, int size)
 {
-	int	*values;
-	int	i;
-	t_stack_node *current;
+	int					*values;
+	int					i;
+	t_stack_node		*current;
 
 	values = malloc(size * sizeof(int));
 	if (!values)
@@ -67,31 +66,38 @@ int	*get_sorted_values(t_stack_node *stack, int size)
 	insertion_sort(values, size);
 	return (values);
 }
-void assign_indices(t_stack_node **stack)
+
+static void	assign_index(t_stack_node *node, int *values, int i, int size)
 {
-    t_stack_node *current;
-    int size;
-    int *values;
-    int i;
-
-    if (!stack || !*stack || (size = ft_lstsize(*stack)) == 0) return;
-    if (!(values = get_sorted_values(*stack, size))) return;
-
-    current = *stack;
-    while (current)
-    {
-        i = 0;
-        while (i < size)
-        {
-            if (current->value == values[i])
-            {
-                current->index = i;
-                break;
-            }
-            i++;
-        }
-        current = current->next;
-    }
-    free(values);
+	if (i >= size)
+		return ;
+	if (node->value == values[i])
+	{
+		node->index = i;
+		return ;
+	}
+	assign_index(node, values, i + 1, size);
 }
 
+void	assign_indices(t_stack_node **stack)
+{
+	t_stack_node	*current;
+	int				size;
+	int				*values;
+
+	if (!stack || !*stack)
+		return ;
+	size = ft_lstsize(*stack);
+	if (size == 0)
+		return ;
+	values = get_sorted_values(*stack, size);
+	if (!values)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		assign_index(current, values, 0, size);
+		current = current->next;
+	}
+	free(values);
+}

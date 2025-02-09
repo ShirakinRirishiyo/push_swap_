@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 14:59:08 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 15:00:05 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	rotate(t_stack_node **stack)
@@ -6,7 +18,7 @@ static void	rotate(t_stack_node **stack)
 	t_stack_node	*last;
 
 	if (!(*stack) || !(*stack)->next)
-		return;
+		return ;
 	first = *stack;
 	*stack = (*stack)->next;
 	(*stack)->prev = NULL;
@@ -14,8 +26,8 @@ static void	rotate(t_stack_node **stack)
 	while (last->next)
 		last = last->next;
 	last->next = first;
-    	first->prev = last;      // Actualiza el puntero prev del primer nodo
-    	first->next = NULL;      // Elimina la referencia al siguiente nodo
+	first->prev = last;
+	first->next = NULL;
 }
 
 int	rotate_a(t_stack_node **s_a)
@@ -39,4 +51,3 @@ int	rotate_ab(t_stack_node **s_a, t_stack_node **s_b)
 	write(1, "rr\n", 3);
 	return (1);
 }
-

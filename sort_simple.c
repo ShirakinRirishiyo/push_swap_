@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 15:04:36 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 15:05:33 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_distance(t_stack_node **stack, int index)
 {
 	t_stack_node	*head;
-	int		distance;
+	int				distance;
 
 	distance = 0;
 	head = *stack;
@@ -16,10 +28,11 @@ int	get_distance(t_stack_node **stack, int index)
 	}
 	return (distance);
 }
+
 static int	get_min(t_stack_node **stack, int val)
 {
 	t_stack_node	*head;
-	int		min;
+	int				min;
 
 	head = *stack;
 	min = head->index;
@@ -31,7 +44,6 @@ static int	get_min(t_stack_node **stack, int val)
 	}
 	return (min);
 }
-
 
 void	sort_3(t_stack_node **a)
 {
@@ -61,6 +73,7 @@ void	sort_3(t_stack_node **a)
 			swap_a(*a);
 	}
 }
+
 void	sort_4(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	int	distance;
@@ -89,11 +102,10 @@ void	sort_short(t_stack_node **a, t_stack_node **b)
 	int	size;
 
 	size = ft_lstsize(*a);
-	if(size == 2)
+	if (size == 2)
 		swap_a(*a);
-	if(size == 3)
+	if (size == 3)
 		sort_3(a);
-	if(size == 4)
+	if (size == 4)
 		sort_4(a, b);
 }
-

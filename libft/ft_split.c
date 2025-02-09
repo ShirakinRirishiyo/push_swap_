@@ -97,11 +97,10 @@ char	**ft_split(const char *s, char c)
 	}
 	return (temp_array);
 }
-
 /*
 int main() {
-    const char* inputString = ",,,,,Hola,,,,,, Cómo,,,,,,, Estás,,,,,";
-    char delimiter = ',';
+    const char* inputString = "1 2 3 4";
+    char delimiter = ' ';
 
     // Llamar a la función para dividir la cadena
     char** resultArray = ft_split(inputString, delimiter);

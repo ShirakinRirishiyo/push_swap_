@@ -22,7 +22,7 @@ static int	ft_isspace(char c)
 
 long	ft_atoi(const char *nptr)
 {
-	long resultado;
+	long	resultado;
 	long	signo;
 
 	resultado = 0;

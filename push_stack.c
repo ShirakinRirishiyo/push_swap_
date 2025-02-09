@@ -1,5 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 10:27:37 by dediaz-f          #+#    #+#             */
+/*   Updated: 2025/02/09 10:27:54 by dediaz-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 int	push(t_stack_node **s_to, t_stack_node **s_from)
 {
@@ -43,4 +54,3 @@ int	pb(t_stack_node **stack_a, t_stack_node **stack_b)
 	ft_putendl_fd("pb", 1);
 	return (0);
 }
-
