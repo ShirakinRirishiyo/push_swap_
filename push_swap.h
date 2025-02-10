@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 11:13:38 by dediaz-f          #+#    #+#             */
-/*   Updated: 2025/02/09 11:32:14 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:11:54 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int				check_duplicate(char **argv);
 int				check_number(char *argv);
 void			check_all(int argc, char **argv);
 int				count_arg(char **array);
+void			reading_normal(t_stack_node **a, int ac, char **av);
+void			reading_auxiliar(t_stack_node **a, char *av);
 void			sort_4(t_stack_node **stack_a, t_stack_node **stack_b);
 void			reading_input_to_stack(t_stack_node **a, int ac, char **av);
 int				initialize_stacks(t_stack_node ***a, t_stack_node ***b);

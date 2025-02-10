@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 13:41:40 by dediaz-f          #+#    #+#             */
-/*   Updated: 2025/02/09 10:20:46 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:12:29 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 void	reading_input_to_stack(t_stack_node **a, int ac, char **av)
 {
-	int					i;
-	t_stack_node		*new;
-
-	i = 1;
-	while (i < ac)
-	{
-		new = ft_lstnew(ft_atoi(av[i]));
-		ft_lstadd_back(a, new);
-		i++;
-	}
+	if (ac == 2)
+		reading_auxiliar(a, av[1]);
+	else
+		reading_normal(a, ac, av);
 }
 
 static void	insertion_sort(int *values, int size)

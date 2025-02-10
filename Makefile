@@ -31,7 +31,6 @@ SRCS =  main.c \
 		push_stack.c \
 		t_list_order.c \
 		index_stack.c \
-		test.c \
 
 all: $(NAME) $(LIBFt) $(OBJDIR)
 

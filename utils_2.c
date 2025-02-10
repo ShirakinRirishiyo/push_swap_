@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:44:18 by dediaz-f          #+#    #+#             */
-/*   Updated: 2025/02/09 15:44:30 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:18:49 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,36 @@ int	error_handle(char *str)
 	exit(1);
 }
 
-int	compare(const void *a, const void *b)
+void	reading_auxiliar(t_stack_node **a, char *av)
 {
-	return (*(int *)a - *(int *)b);
+	t_stack_node	*new;
+	char			**numbers;
+	int				j;
+
+	numbers = ft_split(av, ' ');
+	if (!numbers)
+		return ;
+	j = 0;
+	while (numbers[j])
+	{
+		new = ft_lstnew(ft_atoi(numbers[j]));
+		ft_lstadd_back(a, new);
+		j++;
+	}
+	ft_free(numbers);
 }
 
-void	print_stack_node(t_stack_node *head)
+void	reading_normal(t_stack_node **a, int ac, char **av)
 {
-	t_stack_node	*tmp;
+	t_stack_node	*new;
+	int				i;
 
-	tmp = head;
-	while (tmp != NULL)
+	i = 1;
+	while (i < ac)
 	{
-		ft_putnbr_fd(tmp->value, 1);
-		ft_putendl_fd("", 1);
-		tmp = tmp->next;
+		new = ft_lstnew(ft_atoi(av[i]));
+		ft_lstadd_back(a, new);
+		i++;
 	}
 }
 
