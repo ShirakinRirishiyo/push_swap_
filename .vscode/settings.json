@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"push_swap.h": "c",
+		"compare": "c",
+		"concepts": "c",
+		"typeinfo": "c"
+	}
+}

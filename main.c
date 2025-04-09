@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:37:19 by dediaz-f          #+#    #+#             */
-/*   Updated: 2025/02/05 11:38:19 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2025/03/31 20:59:52 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ int	main(int ac, char **av)
 		radix_sort(a, b);
 	free_stack(a);
 	free_stack(b);
+	free(a);
+	free(b);
 	return (0);
 }

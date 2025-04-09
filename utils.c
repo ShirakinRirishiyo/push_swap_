@@ -6,7 +6,7 @@
 /*   By: dediaz-f <dediaz-f@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 10:27:16 by dediaz-f          #+#    #+#             */
-/*   Updated: 2025/02/10 13:17:55 by dediaz-f         ###   ########.fr       */
+/*   Updated: 2025/03/31 20:47:44 by dediaz-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	numbercmp(int nbr, int *number, int size)
 int	initialize_stacks(t_stack_node ***a, t_stack_node ***b)
 {
 	*a = malloc(sizeof(t_stack_node *));
-	if (!a)
+	if (!*a)
 		return (0);
 	*b = malloc(sizeof(t_stack_node *));
-	if (!b)
+	if (!*b)
 	{
-		free(a);
+		free(*a);
 		return (0);
 	}
 	**a = NULL;
