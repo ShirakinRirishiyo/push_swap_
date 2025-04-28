@@ -97,6 +97,30 @@ void	sort_4(t_stack_node **stack_a, t_stack_node **stack_b)
 	pa(stack_a, stack_b);
 }
 
+void sort_5(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	int distance;
+
+	if (is_sorted(stack_a))
+		return;
+	distance = get_distance(stack_a, get_min(stack_a, -1));
+	if (distance <= 2)
+	{
+		while (distance-- > 0)
+			rotate_a(stack_a);
+	}
+	else
+	{
+		distance = 5 - distance;
+		while (distance-- > 0)
+			rev_rotate_a(stack_a);
+	}
+	pb(stack_a, stack_b);
+	sort_4(stack_a, stack_b);
+	pa(stack_a, stack_b);
+}
+
+
 void	sort_short(t_stack_node **a, t_stack_node **b)
 {
 	int	size;
@@ -108,4 +132,6 @@ void	sort_short(t_stack_node **a, t_stack_node **b)
 		sort_3(a);
 	if (size == 4)
 		sort_4(a, b);
+	if (size == 5)
+		sort_5(a, b);
 }

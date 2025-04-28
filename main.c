@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	if (is_sorted(a))
 		return (0);
 	size = ft_lstsize(*a);
-	if (size <= 4)
+	if (size <= 5)
 		sort_short(a, b);
 	else
 		radix_sort(a, b);
